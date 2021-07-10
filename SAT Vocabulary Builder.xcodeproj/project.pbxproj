@@ -12,6 +12,7 @@
 		7309DE0326965AAA004875B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7309DE0226965AAA004875B2 /* Assets.xcassets */; };
 		7309DE0626965AAA004875B2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7309DE0526965AAA004875B2 /* Preview Assets.xcassets */; };
 		7309DE0E26965AC9004875B2 /* WordStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7309DE0D26965AC9004875B2 /* WordStruct.swift */; };
+		737D1504269A37F6006E191C /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737D1503269A37F6006E191C /* CheckBoxView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		7309DE0526965AAA004875B2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7309DE0726965AAA004875B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7309DE0D26965AC9004875B2 /* WordStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordStruct.swift; sourceTree = "<group>"; };
+		737D1503269A37F6006E191C /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				7309DDFE26965AA8004875B2 /* SAT_Vocabulary_BuilderApp.swift */,
 				7309DE0026965AA8004875B2 /* ContentView.swift */,
+				737D1503269A37F6006E191C /* CheckBoxView.swift */,
 				7309DE0D26965AC9004875B2 /* WordStruct.swift */,
 				7309DE0226965AAA004875B2 /* Assets.xcassets */,
 				7309DE0726965AAA004875B2 /* Info.plist */,
@@ -143,6 +146,7 @@
 			files = (
 				7309DE0126965AA8004875B2 /* ContentView.swift in Sources */,
 				7309DDFF26965AA8004875B2 /* SAT_Vocabulary_BuilderApp.swift in Sources */,
+				737D1504269A37F6006E191C /* CheckBoxView.swift in Sources */,
 				7309DE0E26965AC9004875B2 /* WordStruct.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

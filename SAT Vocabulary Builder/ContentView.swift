@@ -23,6 +23,7 @@ struct ContentView: View {
     @State private var answerDAsString: String = ""
     @State private var identifiedCorrectAnswer: String = ""
 
+    @State private var disabledRemoveWord: Bool = true
     @State private var disabled: Bool = false
     @State private var disabledB: Bool = false
     @State private var disabledC: Bool = false
@@ -45,6 +46,9 @@ struct ContentView: View {
 
     @State var textAnswer: String = ""
 
+    @State var guessCount: Int = 0
+
+    @State private var checked = true
 
     var body: some View {
 
@@ -102,12 +106,17 @@ struct ContentView: View {
                                         buttonOpacityC = 0.2
                                         buttonOpacityD = 0.2
                                         buttonColorA = pinkColor
+                                        guessCount += 1
+                                        print(guessCount)
                                     } else {
                                         textAnswer = "Incorrect: guess again!"
                                         buttonOpacityA = 0.2
                                         disabledA = true
                                         disabledB = false
                                         disabledC = false
+                                        guessCount += 1
+                                        print(guessCount)
+
                                     }
                                 }
                                 , label: {
@@ -134,11 +143,14 @@ struct ContentView: View {
                                         buttonOpacityD = 0.2
                                         buttonColorB = pinkColor
 
+
 //                                        buttonColor = Color(red: 228/255, green: 0/255, blue: 175/255)
                                     } else {
                                         textAnswer = "Incorrect: guess again!"
                                         disabledB = true
                                         buttonOpacityB = 0.2
+                                        guessCount += 1
+
                                     }
                                 }
                                 , label: {
@@ -149,6 +161,7 @@ struct ContentView: View {
                                         .foregroundColor(buttonColorB)
                                         .opacity(buttonOpacityB)
                                 }).disabled(disabledB)
+                                
                             }
 
                             Button(action: {
@@ -163,10 +176,13 @@ struct ContentView: View {
                                     buttonOpacityD = 0.2
                                     buttonOpacityC = 1.0
                                     buttonColorC = pinkColor
+
                                 } else {
                                     textAnswer = "Incorrect: guess again!"
                                     disabledC = true
                                     buttonOpacityC = 0.2
+                                    guessCount += 1
+
 
                                 }
                             }
@@ -190,10 +206,13 @@ struct ContentView: View {
                                     buttonOpacityC = 0.2
                                     buttonOpacityD = 1.0
                                     buttonColorD = pinkColor
+
                                 } else {
                                     textAnswer = "Incorrect: guess again!"
                                     disabledD = true
                                     buttonOpacityD = 0.2
+                                    guessCount += 1
+
                                 }
                             }
                             , label: {
@@ -208,16 +227,22 @@ struct ContentView: View {
 
                     }
 
-                    Text(textAnswer)
-                        .bold()
-                        .font(.title3)
-                        .padding(.top, 40)
-                        .padding(.bottom, 15)
-                        .foregroundColor((pinkColor))
-                    Spacer()
+                    VStack {
+                        Text(textAnswer)
+                            .bold()
+                            .font(.title3)
+                            .padding(.top, 40)
+                            .padding(.bottom, 15)
+                            .foregroundColor((pinkColor))
+                        HStack {
+                            CheckBoxView(checked: $checked)
+                            Spacer()
+                            Text("Hard Words")
+                        }
+                    }
+
                 }.fixedSize(horizontal: false, vertical: true)
                 .padding(.horizontal)
-
             }
         }.onAppear {
             getCurrentQuestionAndCorrectAnswer()
@@ -235,6 +260,8 @@ struct ContentView: View {
         buttonColorC = Color("LightDark")
         buttonColorD = Color("LightDark")
 
+        guessCount = 0
+
         buttonOpacityA = 1.0
         buttonOpacityB = 1.0
         buttonOpacityC = 1.0
@@ -246,50 +273,27 @@ struct ContentView: View {
 
 
         //        these are the numbers to select random definitions - one of them must be currentCorrectAnswer and added in function if else to make sure the answers are not duplicates
-        answerA = Int.random(in: 0..<words.count - 1)
 
         var newWords = Word(word: "", definition: "", grouping: "", mostImportant: false)
-
         var newWordsArray = [newWords]
 
 
+        answerA = Int.random(in: 0..<words.count - 1)
         words.remove(at: answerA)
-
         newWords = Word(word: words[answerA].word, definition: words[answerA].definition, grouping: words[answerA].grouping, mostImportant: words[answerA].mostImportant)
 
 
         answerB = Int.random(in: 0..<words.count - 1)
-        if answerB == answerA {
-            answerB = Int.random(in: 0..<words.count - 1)
-        } else {
-            answerB = answerB
-        }
-
         words.remove(at: answerB)
-
         newWordsArray.append(Word(word: words[answerB].word, definition: words[answerB].definition, grouping: words[answerB].grouping, mostImportant: words[answerB].mostImportant))
 
 
         answerC = Int.random(in: 0..<words.count - 1)
-        if answerC == answerA || answerC == answerB {
-            answerC = Int.random(in: 0..<words.count - 1)
-        } else {
-            answerC = answerC
-        }
-
         words.remove(at: answerC)
-
         newWordsArray.append(Word(word: words[answerC].word, definition: words[answerC].definition, grouping: words[answerC].grouping, mostImportant: words[answerC].mostImportant))
 
         answerD = Int.random(in: 0..<words.count - 1)
-        if answerD == answerA || answerD == answerB || answerD == answerC {
-            answerD = Int.random(in: 0..<words.count - 1)
-        } else {
-            answerD = answerD
-        }
-
         words.remove(at: answerD)
-
         newWordsArray.append(Word(word: words[answerD].word, definition: words[answerD].definition, grouping: words[answerD].grouping, mostImportant: words[answerD].mostImportant))
 
 

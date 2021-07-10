@@ -15,6 +15,15 @@ struct  Word {
     let mostImportant: Bool
 }
 
+var newWords: [Word] = [
+    Word(
+        word: "abate",
+        definition: "lessen",
+        grouping: "size, amount, location",
+        mostImportant: true
+    )
+]
+
 
 
 

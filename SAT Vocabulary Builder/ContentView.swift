@@ -38,17 +38,12 @@ struct ContentView: View {
     var pinkColor = Color(red: 228/255, green: 0/255, blue: 175/255)
 
 
-
     @State var buttonOpacityA: Double = 1.0
     @State var buttonOpacityB: Double = 1.0
     @State var buttonOpacityC: Double = 1.0
     @State var buttonOpacityD: Double = 1.0
 
     @State var textAnswer: String = ""
-
-
-
-
 
 
     var body: some View {
@@ -253,12 +248,26 @@ struct ContentView: View {
         //        these are the numbers to select random definitions - one of them must be currentCorrectAnswer and added in function if else to make sure the answers are not duplicates
         answerA = Int.random(in: 0..<words.count - 1)
 
+        var newWords = Word(word: "", definition: "", grouping: "", mostImportant: false)
+
+        var newWordsArray = [newWords]
+
+
+        words.remove(at: answerA)
+
+        newWords = Word(word: words[answerA].word, definition: words[answerA].definition, grouping: words[answerA].grouping, mostImportant: words[answerA].mostImportant)
+
+
         answerB = Int.random(in: 0..<words.count - 1)
         if answerB == answerA {
             answerB = Int.random(in: 0..<words.count - 1)
         } else {
             answerB = answerB
         }
+
+        words.remove(at: answerB)
+
+        newWordsArray.append(Word(word: words[answerB].word, definition: words[answerB].definition, grouping: words[answerB].grouping, mostImportant: words[answerB].mostImportant))
 
 
         answerC = Int.random(in: 0..<words.count - 1)
@@ -268,12 +277,21 @@ struct ContentView: View {
             answerC = answerC
         }
 
+        words.remove(at: answerC)
+
+        newWordsArray.append(Word(word: words[answerC].word, definition: words[answerC].definition, grouping: words[answerC].grouping, mostImportant: words[answerC].mostImportant))
+
         answerD = Int.random(in: 0..<words.count - 1)
         if answerD == answerA || answerD == answerB || answerD == answerC {
             answerD = Int.random(in: 0..<words.count - 1)
         } else {
             answerD = answerD
         }
+
+        words.remove(at: answerD)
+
+        newWordsArray.append(Word(word: words[answerD].word, definition: words[answerD].definition, grouping: words[answerD].grouping, mostImportant: words[answerD].mostImportant))
+
 
         answerAAsString = words[answerA].definition
         answerBAsString = words[answerB].definition
@@ -308,6 +326,9 @@ struct ContentView: View {
             answerBAsString = words[answerB].definition
             answerCAsString = words[answerC].definition
         }
+
+        words.append(contentsOf: newWordsArray)
+        newWordsArray.removeAll()
 
     }
 }
